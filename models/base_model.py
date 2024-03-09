@@ -5,13 +5,17 @@ import uuid
 from datetime import datetime
 from models import storage
 
-
 class BaseModel:
 
-    """Class for base model."""
+    """Class for base model of object hierarchy."""
 
     def __init__(self, *args, **kwargs):
-        """Initialization of a Base instance."""
+        """Initialization of a Base instance.
+
+        Args:
+            - *args: list of arguments
+            - **kwargs: dict of key-values arguments
+        """
 
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
@@ -29,20 +33,22 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
 
-    def save(self):
-        """ Type method for save."""
-
-        self.updated_at = datetime.now()
-        storage.save()
     def __str__(self):
-        """Type model that returns a human-readable string representation __str__."""
+        """Returns a human-readable string representation
+        of an instance."""
 
         return "[{}] ({}) {}".\
             format(type(self).__name__, self.id, self.__dict__)
 
+    def save(self):
+        """Updates the updated_at attribute
+        with the current datetime."""
+
+        self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
-        """Type model that returns a dictionary representation of an instance."""
+        """Returns a dictionary representation of an instance."""
 
         my_dict = self.__dict__.copy()
         my_dict["__class__"] = type(self).__name__
