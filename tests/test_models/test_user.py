@@ -11,7 +11,7 @@ from models.engine.file_storage import FileStorage
 import os
 from models.base_model import BaseModel
 
-class TestUser(unittest.TestCase):
+class Test_User(unittest.TestCase):
 
     """Test Cases for the User class."""
 
