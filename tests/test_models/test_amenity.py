@@ -6,7 +6,6 @@ from datetime import datetime
 import time
 from models.amenity import Amenity
 import re
-import json
 from models.engine.file_storage import FileStorage
 import os
 from models.base_model import BaseModel
